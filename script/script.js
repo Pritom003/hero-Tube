@@ -4,10 +4,15 @@ const HandleCatagory=async()=>{
 
 catagoryarray(data)
 }
+
+
+
+
+
 // creating category button
 const catagoryarray=(datas)=>{
   const arrayOfData=datas.data
-  console.log(arrayOfData)
+  
   const catgBtn=document.getElementById('catagorybutton')
   
   const ul=document.createElement('ul')
@@ -15,16 +20,16 @@ const catagoryarray=(datas)=>{
  let liHTML='';
 
   arrayOfData.forEach(element => {
-  console.log(element)
+  // console.log(element)
   
-  //  liHTML +=`<li><a onclick="categoryId('${element.category_id}')" href='#' class="btn btn-outline">
-  //  ${element.category}</a></li>`
+    liHTML +=`<li><a onclick="categoryId('${element.category_id}')" href='#' class="btn btn-outline">
+    ${element.category}</a></li>`
  
-
-    liHTML += `<li><a onclick="${element.category === 'Drawing' ? `oNCLICK5('${element.category_id}')`
-     : `categoryId('${element.category_id}')`}" href='#' class="btn btn-outline">
-    ${element.category}
-</a></li>`;
+  //  oncategoryId(`${element.category_id}`);
+//     liHTML += `<li><a onclick="${element.category === 'Drawing' ? `oNCLICK5('${element.category_id}')`
+//      : `categoryId('${element.category_id}')`}" href='#' class="btn btn-outline">
+//     ${element.category}
+// </a></li>`;
 
 
   })
@@ -32,18 +37,34 @@ const catagoryarray=(datas)=>{
   catgBtn.appendChild(ul)
   
 }
+
+
+
+
+
+
+
+
 // creating oncllick data____---
 const categoryId=async(ctgoryId)=>{
-  console.log(ctgoryId)
+
   
   const resctgId =await fetch(`https://openapi.programming-hero.com/api/videos/category/${ctgoryId}`)
   const datactgId=await resctgId.json()
-console.log(datactgId.data)
+ console.log(datactgId.data)
+ oncategoryId(ctgoryId)
 const datactgIdarray=datactgId.data;
-const mainDIV=document.getElementById('maincontent')
-mainDIV.innerHTML='';
+
+ 
+if(datactgIdarray.length>0 ){
+  const gets=document.getElementById('sorrydib')
+      gets.classList.add('hidden')
+      console.log(gets)
+  const mainDIV=document.getElementById('maincontent')
+    mainDIV.innerHTML='';
 datactgIdarray.forEach(info=>{
-  console.log(info)
+
+   
   const createdDiv=document.createElement('div')
 
   
@@ -72,16 +93,35 @@ datactgIdarray.forEach(info=>{
           </div>
         </div>`;
         mainDIV.appendChild(createdDiv)
-})
         
-}
+  })}
+
+else{
+
+      const gets=document.getElementById('sorrydib')
+      gets.classList.remove('hidden')
+      
   
+      const mainDIV=document.getElementById('maincontent')
+      mainDIV.appendChild(gets)
+    
+}}
+    
+        
+
+ 
 
 
 HandleCatagory()
-categoryId('01')
+
+
+
+
+
+
 // ONCLICK 
 const oNCLICK5=(click)=>{
+  document.querySelector('#maincontent').innerHTML = "";
   const div=document.getElementById("sorrydib")
   div.classList.remove('hidden')
   console.log(click)
@@ -91,6 +131,16 @@ const showimage=(click)=>{
   image.classList.remove('hidden')
   console.log(click)
 }
+
+
+
+
+
+
+
+
+
+
 // navbaar
 
 // --------------QNA___________
@@ -133,6 +183,43 @@ const showimage=(click)=>{
     </div>
   `
   const content=document.body.appendChild(divOne);
-  content=''
+  console.log(content)
   
   })
+
+
+
+
+
+
+
+  // SORTED DATA
+
+
+
+
+
+
+
+   // creating sortedoncllick data____---
+const oncategoryId=async(ctgoryId)=>{
+  
+  const resctgId =await fetch(`https://openapi.programming-hero.com/api/videos/category/${ctgoryId}`)
+  const datactgId=await resctgId.json()
+ 
+const datactgIdarray=datactgId.data;
+const sorted=datactgIdarray.sort((a,b)=>parseFloat(b.others.views)-parseFloat(a.others.views))
+  console.log("sorted",sorted);
+  mainDIV.innerHTML(categoryId(info))
+// const mainDIV=document.getElementById('maincontent')
+// mainDIV.innerHTML='';
+// sorted.forEach(info=>
+//   {
+   
+   })
+
+        
+}
+
+
+

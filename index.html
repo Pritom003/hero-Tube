@@ -10,15 +10,15 @@
 <!-- ------------------------------------------------ -->
 <link rel="stylesheet" href="style/style.css">
 </head>
-<body>
+<body >
   <header>
     <nav id="navopt">
       <div class="navbar bg-base-100 ">
         <div class="flex-1">
           <a class="btn btn-ghost normal-case text-xl"><img src="style/Logo.png" alt=""></a>
-        </div>
+        </div id="sortbutton">
         <div>
-          <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Sort by view</button>
+          <button  onclick="oncategoryId()" class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Sort by view</button>
         </div>
         <div><button id="blogbutton" class="btn btn-error" >blog</button></div>
       </div>
@@ -27,35 +27,26 @@
   </header>
   <main>
     <section>
-      <div id="sorrydib" class="hidden te justify-center text-center px-96"> <img src="style/Icon.png" alt="">
-        <p>Oops!! Sorry, There is no content here</p></div>
-    </div>
-      <div id="catagorybutton" class="" >
-       
-      <!-- main content -->
       
-      <div id="maincontent" class="container mt-10 max-w-max grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-6">
-       
-        <!-- <div class="card w-96 bg-base-100 shadow-xl">
-          <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-          <div class="card-body">
-            <div class="flex gap-3">
-              <img class="-mt-16" src="demophoto.svg" alt="">
-              <div>
-                <h2>Building a Winning UX Strategy Using the Kano Model
-                </h2>
-              <p>
-                Awlad Hossain <span><img  class="inl" src="tik.svg" alt=""></span>
-              </p>
-              <span class='text-sm'> 91K views</span>
-            </div>
-            </div>
-            
-          </div>
-        </div> -->
-      </div>
+      <div id="catagorybutton" class="" >
+        <div id="mainbody">
+        <div id="sorrydib" class="hidden  ">
+          <div class="justify-center text-center grid lg:px-96">
+           <img class="justify-self-center"  src="style/Icon.png" alt="">
+          <p class="text-6xl">Oops!! Sorry, There is no content here</p>
+        </div>
+        </div>
+       <div id="containerr">
+      <!-- main content -->
 
       
+      <div id="maincontent" class="container mt-10 max-w-max grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-6">
+        
+      </div>
+        
+      </div>
+</div>
+</div>
     </section>
 
   </main>
@@ -71,3 +62,32 @@
   <script src="script/script.js"></script>
 </body>
 </html>
+<!-- sorted.map(info=>{
+  
+  const createdDiv=document.createElement('div')
+  createdDiv.innerHTML=`
+  <div class="card bg-base-100 shadow-xl">
+          <figure><img class=" w-full lg:w-96 lg:h-64" src="${info.thumbnail}" alt=thumbnail /></figure>
+          <div class="card-body">
+            <div class="flex gap-3">
+              <img class="rounded-full w-10 h-10   "  src="${info.authors[0].profile_picture}" alt="dp">
+              <div>
+                <h2>${info.title.slice(0,12)}
+                </h2>
+              <p>
+                ${info.authors[0].profile_name.slice(0,8)}
+                <span>
+                
+                ${info.authors[0].verified ? `<img  class="inline " src="style/tik (1).png" alt="Verified">` : ''}
+               </span>
+       
+              </p>
+              <span class='text-sm'> 91K views</span>
+            </div>
+            </div>
+            
+          </div>
+        </div>`;
+        mainDIV.appendChild(createdDiv)
+        
+}) -->
