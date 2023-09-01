@@ -56,7 +56,7 @@ datactgIdarray.forEach(info=>{
                 <h2>${info.title.slice(0,12)}
                 </h2>
               <p>
-                ${info.authors[0].profile_name}
+                ${info.authors[0].profile_name.slice(0,8)}
                 <span>
                 
                 ${info.authors[0].verified ? `<img  class="inline " src="style/tik (1).png" alt="Verified">` : ''}
@@ -83,7 +83,6 @@ const oNCLICK5=(click)=>{
   const div=document.getElementById("sorrydib")
   div.classList.remove('hidden')
   console.log(click)
-  console.log('HI')
 }
 const showimage=(click)=>{
   const image=document.getElementById('tikimage')
