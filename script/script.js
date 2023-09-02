@@ -27,11 +27,7 @@ const catagoryarray=(datas)=>{
     liHTML +=`<li><a onclick="categoryId('${element.category_id}')" href='#' class="btn btn-outline">
     ${element.category}</a></li>`
  
-  //  oncategoryId(`${element.category_id}`);
-//     liHTML += `<li><a onclick="${element.category === 'Drawing' ? `oNCLICK5('${element.category_id}')`
-//      : `categoryId('${element.category_id}')`}" href='#' class="btn btn-outline">
-//     ${element.category}
-// </a></li>`;
+
 
 
   })
@@ -49,21 +45,30 @@ const catagoryarray=(datas)=>{
 
 // creating oncllick data____---
 const categoryId=async(ctgoryId)=>{
+  // ----------------------hidden add remove for blog button
+  const datas=document.getElementById('sec')
+  datas.classList.remove('hidden')
+  const divs=document.getElementById('divs')
+  divs.classList.add('hidden')
 
+  // ____________hidden add remove for error button
+  const div=document.getElementById('div')
+  div.classList.add('hidden')
   const data=document.getElementById('sec')
     data.classList.remove('hidden')
     
   const resctgId =await fetch(`https://openapi.programming-hero.com/api/videos/category/${ctgoryId}`)
   const datactgId=await resctgId.json()
  console.log(datactgId.data)
- oncategoryId(ctgoryId)
+//  oncategoryId(ctgoryId)
 const datactgIdarray=datactgId.data;
 
- 
+
 if(datactgIdarray.length>0 ){
-  const gets=document.getElementById('sorrydib')
-      gets.classList.add('hidden')
-      console.log(gets)
+  const divsorry=document.getElementById('sorrydib')
+  divsorry.classList.add('hidden')
+  const divother=document.getElementById('containerr')
+  divother.classList.remove('hidden')
   const mainDIV=document.getElementById('maincontent')
     mainDIV.innerHTML='';
 datactgIdarray.forEach(info=>{
@@ -86,7 +91,7 @@ datactgIdarray.forEach(info=>{
                 ${info.authors[0].profile_name.slice(0,8)}
                 <span>
                 
-                ${info.authors[0].verified ? `<img  class="inline " src="style/tik (1).png" alt="Verified">` : ''}
+                ${info.authors[0].verified ? `<img  class="inline " src="style/tik (1).png" alt="Verified">`: ''}
                </span>
        
               </p>
@@ -101,13 +106,12 @@ datactgIdarray.forEach(info=>{
   })}
 
 else{
-
-      const gets=document.getElementById('sorrydib')
-      gets.classList.remove('hidden')
-      
+  const divsorry=document.getElementById('sorrydib')
+  divsorry.classList.remove('hidden')
+  const divother=document.getElementById('containerr')
+  divother.classList.add('hidden')
   
-      const mainDIV=document.getElementById('maincontent')
-      mainDIV.appendChild(gets)
+      
     
 }}
     
@@ -123,13 +127,13 @@ HandleCatagory()
 
 
 
-// ONCLICK 
-const oNCLICK5=(click)=>{
-  document.querySelector('#maincontent').innerHTML = "";
-  const div=document.getElementById("sorrydib")
-  div.classList.remove('hidden')
-  console.log(click)
-}
+// // ONCLICK 
+// const oNCLICK5=(click)=>{
+//   document.querySelector('#maincontent').innerHTML = "";
+//   const div=document.getElementById("sorrydib")
+//   div.classList.remove('hidden')
+//   console.log(click)
+// }
 const showimage=(click)=>{
   const image=document.getElementById('tikimage')
   image.classList.remove('hidden')
@@ -153,7 +157,8 @@ const showimage=(click)=>{
     
     const data=document.getElementById('sec')
     data.classList.add('hidden')
-    const div=document.createElement('div')
+    const div=document.getElementById('divs')
+    div.classList.remove('hidden')
   const divOne=document.createElement('div')
   divOne.innerHTML=`
   <div class="px-8">
@@ -189,7 +194,8 @@ const showimage=(click)=>{
       </ul>
     </div>
   `
-  const content=document.body.appendChild(divOne);
+  const divsec=div.appendChild(divOne)
+  const content=document.body.appendChild(divsec);
   console.log(content)
   
   })
@@ -209,21 +215,19 @@ const showimage=(click)=>{
 
 
    // creating sortedoncllick data____---
-const oncategoryId=async(ctgoryId)=>{
+// const oncategoryId=async(ctgoryId)=>{
   
-  const resctgId =await fetch(`https://openapi.programming-hero.com/api/videos/category/${ctgoryId}`)
-  const datactgId=await resctgId.json()
+//   const resctgId =await fetch(https://openapi.programming-hero.com/api/videos/category/${ctgoryId})
+//   const datactgId=await resctgId.json()
  
-const datactgIdarray=datactgId.data;
-const sorted=datactgIdarray.sort((a,b)=>parseFloat(b.others.views)-parseFloat(a.others.views))
-  console.log("sorted",sorted);
-  mainDIV.innerHTML(categoryId(info))
-// const mainDIV=document.getElementById('maincontent')
-// mainDIV.innerHTML='';
-// sorted.forEach(info=>
-//   {
+// const datactgIdarray=datactgId.data;
+// const sorted=datactgIdarray.sort((a,b)=>parseFloat(b.others.views)-parseFloat(a.others.views))
+//   console.log("sorted",sorted);
+//   const mainDIV=document.getElementById('maincontent')
+//   // mainDIV.innerHTML(categoryId(sorted))
+// // const mainDIV=document.getElementById('maincontent')
+// // mainDIV.innerHTML='';
+// // sorted.forEach(info=>
+// //   {
    
-   }
-
-
-
+//    }

@@ -20,16 +20,21 @@
         <div>
           <button  onclick="oncategoryId()" class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Sort by view</button>
         </div>
-        <div><button id="blogbutton" class="btn btn-error" >blog</button></div>
+        <div><button id="blogbutton" class="btn btn-error  " >blog</button></div>
       </div>
     </nav>
 
   </header>
   <main>
+    <section id="divs" class="hidden">
+    <div id="div" ></div>
+
+    </section>
     <section>
       
       <div id="catagorybutton" class="" >
-        </section><section id="sec" class="hidden">
+        </section>
+        <section id="sec" class="hidden">
         <div id="mainbody">
         <div id="sorrydib" class="hidden  ">
           <div class="justify-center text-center grid lg:px-96">
@@ -37,11 +42,11 @@
           <p class="text-6xl">Oops!! Sorry, There is no content here</p>
         </div>
         </div>
-       <div id="containerr">
+       <div id="containerr" class="hidden">
       <!-- main content -->
 
       
-      <div id="maincontent" class="container mt-10 max-w-max grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-6">
+      <div id="maincontent" class="container  mt-10 max-w-max grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-6">
         
       </div>
         
@@ -79,7 +84,7 @@
                 ${info.authors[0].profile_name.slice(0,8)}
                 <span>
                 
-                ${info.authors[0].verified ? `<img  class="inline " src="style/tik (1).png" alt="Verified">` : ''}
+                ${info.authors[0].verified ? <img  class="inline " src="style/tik (1).png" alt="Verified"> : ''}
                </span>
        
               </p>
@@ -92,3 +97,8 @@
         mainDIV.appendChild(createdDiv)
         
 }) -->
+<!--   //  oncategoryId(${element.category_id});
+//     liHTML += <li><a onclick="${element.category === 'Drawing' ? oNCLICK5('${element.category_id}')`
+//      : `categoryId('${element.category_id}')`}" href='#' class="btn btn-outline">
+//     ${element.category}
+// </a></li>`; -->
