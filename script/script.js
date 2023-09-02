@@ -1,9 +1,15 @@
+
+
+
+
 const HandleCatagory=async()=>{
   const res =await fetch(`https://openapi.programming-hero.com/api/videos/categories`)
   const data=await res.json()
 console.log(data)
+displayData(data)
 catagoryarray(data)
 }
+// -------------sort----
 
 
 
@@ -15,6 +21,7 @@ const catagoryarray=(datas)=>{
  
   const arrayOfData=datas.data
   
+
   const catgBtn=document.getElementById('catagorybutton')
   
   const ul=document.createElement('ul')
@@ -23,6 +30,14 @@ const catagoryarray=(datas)=>{
  
   arrayOfData.forEach(element => {
   // console.log(element)
+  
+
+
+
+
+
+
+
   
     liHTML +=`<li><a onclick="categoryId('${element.category_id}')" href='#' class="btn btn-outline">
     ${element.category}</a></li>`
@@ -33,6 +48,7 @@ const catagoryarray=(datas)=>{
   })
   ul.innerHTML=liHTML
   catgBtn.appendChild(ul)
+
   
 }
 
@@ -45,11 +61,7 @@ const catagoryarray=(datas)=>{
 
 // creating oncllick data____---
 const categoryId=async(ctgoryId)=>{
-  // ----------------------hidden add remove for blog button
-  const datas=document.getElementById('sec')
-  datas.classList.remove('hidden')
-  const divs=document.getElementById('divs')
-  divs.classList.add('hidden')
+  
 
   // ____________hidden add remove for error button
   const div=document.getElementById('div')
@@ -62,8 +74,8 @@ const categoryId=async(ctgoryId)=>{
 //  console.log(datactgId.data)
 //  oncategoryId(ctgoryId)
 const datactgIdarray=datactgId.data;
-// displayData()
-// sortdata(datactgIdarray.sort((a, b) => parseFloat(b.others.views) - parseFloat(a.others.views)));
+// (datactgIdarray.sort((a, b) => parseFloat(b.others.views) - parseFloat(a.others.views)))
+
 
 
 if(datactgIdarray.length>0 ){
@@ -130,7 +142,7 @@ datactgIdarray.forEach(info=>{
           <figure><img class="relative w-full lg:w-96 lg:h-64" src="${info.thumbnail}" alt=thumbnail />
           
          </figure>
-         <span class=" absolute font-bold -mt-6 ml-48 text-right    bg-slate-800   text-white w-36">
+         <span class=" absolute font-bold -mt-6  text-right    bg-slate-800   text-white w-36">
       ${info.others?.posted_date? convert(info.others?.posted_date):''} </span>
          </div>
           <div class="card-body">
@@ -155,6 +167,8 @@ datactgIdarray.forEach(info=>{
         </div>`;
         mainDIV.appendChild(createdDiv)
         
+
+        
   })}
 
 else{
@@ -168,25 +182,6 @@ else{
 }}
     
         
-// Function to sort data by views in descending order
-const sortDataByViews = () => {
-  if (datactgIdarray && datactgIdarray.length > 0) {
-    datactgIdarray.sort((a, b) => parseFloat(b.others.views) - parseFloat(a.others.views));
-    displayData(datactgIdarray);
-  }
-};
-
-document.getElementById('sort').addEventListener('click', sortDataByViews);
- 
-const displayData = (sortedData) => {
-  const mainDIV = document.getElementById('maincontent');
-  mainDIV.innerHTML = ''; // Clear the existing content
-
-  sortedData.forEach((info) => {
-    const createdDiv = document.createElement('div');
-    createdDiv.innerHTML = `
-      <div class="card bg-base-100 shadow-xl">
-        <figure><img class="w-full lg:w-96 lg:h-64" src="${info.thumbnail}" alt>`})}
 
 HandleCatagory()
 
@@ -214,53 +209,11 @@ const showimage=(click)=>{
 // navbaar
 
 // --------------QNA___________
-
-  document.getElementById('blogbutton').addEventListener( 'click',function (){
-    
-    const data=document.getElementById('sec')
-    data.classList.add('hidden')
-    const div=document.getElementById('divs')
-    div.classList.remove('hidden')
-  const divOne=document.createElement('div')
-  divOne.innerHTML=`
-  <div class="px-8">
-      <h1 class="text-6xl"> Questions</h1>
-      <ul class="grid gap-8 text-xs text-center">
-        <li>
-        <h1 class="text-xl">QUESTION-01:</h1>
-        Discuss the scope of var, let, and const</li>
-        <li>
-        <h1 class="text-xl">QUESTION-01:</h1>
-        Tell us the use cases of null and undefined</li>
-        <li>
-        <h1 class="text-xl">QUESTION-01:</h1>
-        What do you mean by REST API?</li>
-        
-      </ul>
-    </div>
-      <div class="px-8">
-      <h1 class="text-6xl">Answers</h1>
-      <ul class="grid gap-8 text-xs text-center">
-        <li>
-        <h1 class="text-xl">Answer-01:</h1>
-          var declarations are globally scoped or function scoped while let and const are block scoped. var variables can be updated and re-declared within its scope; let variables can be updated but not re-declared; const variables 
-          can neither be updated nor re-declared.
-        </li>
-        <li> <h1 class="text-xl">Answer-02:</h1>
-          Undefined means the variable has been declared, but its value has not been assigned. Null means an empty value or a blank value. The typeof() operator returns undefined for an undefined variable. The typeof() operator returns the type as an object for a variable whose
-           value is assigned as null.
-        </li>
-        <li> <h1 class="text-xl">Answer-03:</h1>
-        An API, or application programming interface, is a set of rules that define how applications or devices can connect to and communicate with each other. A REST API is an API that conforms to the design principles of the REST, 
-          or representational state transfer architectural style.</li>
-      </ul>
-    </div>
-  `
-  const divsec=div.appendChild(divOne)
-  const content=document.body.appendChild(divsec);
-  console.log(content)
-  
-  })
+function clickblog(qna){
+  consbtn=document.getElementById('blogbutton')
+  console.log(qna)
+}
+ 
 
 
 
@@ -270,18 +223,7 @@ const showimage=(click)=>{
 
   // SORTED DATA
 
+  function displayData(data){
+    console.log('sort' ,data)
 
-
-
-
-   
-   
-  
-// document.getElementById('sort').addEventListener( 'click',sortdata)
-//    function sortdata(data){
-   
-//     const mainDIV=document.getElementById('maincontent')
-//     mainDIV.innerHTML=data;
-//     console.log(mainDIV)
-    
-//    }
+  }
