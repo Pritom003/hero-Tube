@@ -1,7 +1,7 @@
 const HandleCatagory=async()=>{
   const res =await fetch(`https://openapi.programming-hero.com/api/videos/categories`)
   const data=await res.json()
-
+console.log(data)
 catagoryarray(data)
 }
 
@@ -20,7 +20,7 @@ const catagoryarray=(datas)=>{
   const ul=document.createElement('ul')
   ul.classList=`flex gap-4 px-8  md:px- lg:px-96  `
  let liHTML='';
-
+ 
   arrayOfData.forEach(element => {
   // console.log(element)
   
@@ -59,9 +59,11 @@ const categoryId=async(ctgoryId)=>{
     
   const resctgId =await fetch(`https://openapi.programming-hero.com/api/videos/category/${ctgoryId}`)
   const datactgId=await resctgId.json()
- console.log(datactgId.data)
+//  console.log(datactgId.data)
 //  oncategoryId(ctgoryId)
 const datactgIdarray=datactgId.data;
+// displayData()
+// sortdata(datactgIdarray.sort((a, b) => parseFloat(b.others.views) - parseFloat(a.others.views)));
 
 
 if(datactgIdarray.length>0 ){
@@ -71,16 +73,66 @@ if(datactgIdarray.length>0 ){
   divother.classList.remove('hidden')
   const mainDIV=document.getElementById('maincontent')
     mainDIV.innerHTML='';
+
 datactgIdarray.forEach(info=>{
+  // console.log('go',info)
 
    
   const createdDiv=document.createElement('div')
 
+  // console.log(info.others?.posted_date,'hi')
+  const convert=(time)=>{
   
+    const settime=time/60
+    
   
+    const times=Math.floor(settime)
+    if (times<=60){
+    return `${times}`+' min ago'
+    }
+    else if(time==1672656000){
+      const hour =times/60
+      const days= hour/24
+
+      const d=Math.floor(days)
+
+      const mon=Math.floor((d/30))
+      
+      const year=mon/12
+      const m=Math.floor((mon%12))
+
+    const y=Math.floor(year)
+    return `   ${y} y ${m} m ago`;
+
+    }
+    else if(times>60 ){
+      const hour =times/60
+      const days= hour/24
+
+      const d=Math.floor(days)
+  
+      const min=times%60
+      const hours=Math.floor(hour)
+      return`  ${hours} hrs ${min}` + 'min ago';
+    }
+    
+    else if (time==0){
+      return NaN
+    }
+    
+    // 
+    
+  }
+  console.log(info.others?.posted_date)
   createdDiv.innerHTML=`
   <div class="card bg-base-100 shadow-xl">
-          <figure><img class=" w-full lg:w-96 lg:h-64" src="${info.thumbnail}" alt=thumbnail /></figure>
+  <div >
+          <figure><img class="relative w-full lg:w-96 lg:h-64" src="${info.thumbnail}" alt=thumbnail />
+          
+         </figure>
+         <span class=" absolute font-bold -mt-6 ml-48 text-right    bg-slate-800   text-white w-36">
+      ${info.others?.posted_date? convert(info.others?.posted_date):''} </span>
+         </div>
           <div class="card-body">
             <div class="flex gap-3">
               <img class="rounded-full w-10 h-10   "  src="${info.authors[0].profile_picture}" alt="dp">
@@ -116,9 +168,25 @@ else{
 }}
     
         
+// Function to sort data by views in descending order
+const sortDataByViews = () => {
+  if (datactgIdarray && datactgIdarray.length > 0) {
+    datactgIdarray.sort((a, b) => parseFloat(b.others.views) - parseFloat(a.others.views));
+    displayData(datactgIdarray);
+  }
+};
 
+document.getElementById('sort').addEventListener('click', sortDataByViews);
  
+const displayData = (sortedData) => {
+  const mainDIV = document.getElementById('maincontent');
+  mainDIV.innerHTML = ''; // Clear the existing content
 
+  sortedData.forEach((info) => {
+    const createdDiv = document.createElement('div');
+    createdDiv.innerHTML = `
+      <div class="card bg-base-100 shadow-xl">
+        <figure><img class="w-full lg:w-96 lg:h-64" src="${info.thumbnail}" alt>`})}
 
 HandleCatagory()
 
@@ -127,13 +195,7 @@ HandleCatagory()
 
 
 
-// // ONCLICK 
-// const oNCLICK5=(click)=>{
-//   document.querySelector('#maincontent').innerHTML = "";
-//   const div=document.getElementById("sorrydib")
-//   div.classList.remove('hidden')
-//   console.log(click)
-// }
+
 const showimage=(click)=>{
   const image=document.getElementById('tikimage')
   image.classList.remove('hidden')
@@ -212,22 +274,14 @@ const showimage=(click)=>{
 
 
 
-
-
-   // creating sortedoncllick data____---
-// const oncategoryId=async(ctgoryId)=>{
-  
-//   const resctgId =await fetch(https://openapi.programming-hero.com/api/videos/category/${ctgoryId})
-//   const datactgId=await resctgId.json()
- 
-// const datactgIdarray=datactgId.data;
-// const sorted=datactgIdarray.sort((a,b)=>parseFloat(b.others.views)-parseFloat(a.others.views))
-//   console.log("sorted",sorted);
-//   const mainDIV=document.getElementById('maincontent')
-//   // mainDIV.innerHTML(categoryId(sorted))
-// // const mainDIV=document.getElementById('maincontent')
-// // mainDIV.innerHTML='';
-// // sorted.forEach(info=>
-// //   {
    
+   
+  
+// document.getElementById('sort').addEventListener( 'click',sortdata)
+//    function sortdata(data){
+   
+//     const mainDIV=document.getElementById('maincontent')
+//     mainDIV.innerHTML=data;
+//     console.log(mainDIV)
+    
 //    }
