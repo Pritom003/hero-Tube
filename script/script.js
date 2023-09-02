@@ -11,6 +11,8 @@ catagoryarray(data)
 
 // creating category button
 const catagoryarray=(datas)=>{
+  
+ 
   const arrayOfData=datas.data
   
   const catgBtn=document.getElementById('catagorybutton')
@@ -48,7 +50,9 @@ const catagoryarray=(datas)=>{
 // creating oncllick data____---
 const categoryId=async(ctgoryId)=>{
 
-  
+  const data=document.getElementById('sec')
+    data.classList.remove('hidden')
+    
   const resctgId =await fetch(`https://openapi.programming-hero.com/api/videos/category/${ctgoryId}`)
   const datactgId=await resctgId.json()
  console.log(datactgId.data)
@@ -146,6 +150,9 @@ const showimage=(click)=>{
 // --------------QNA___________
 
   document.getElementById('blogbutton').addEventListener( 'click',function (){
+    
+    const data=document.getElementById('sec')
+    data.classList.add('hidden')
     const div=document.createElement('div')
   const divOne=document.createElement('div')
   divOne.innerHTML=`
@@ -216,10 +223,7 @@ const sorted=datactgIdarray.sort((a,b)=>parseFloat(b.others.views)-parseFloat(a.
 // sorted.forEach(info=>
 //   {
    
-   })
-
-        
-}
+   }
 
 
 
