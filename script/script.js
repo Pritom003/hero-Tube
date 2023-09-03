@@ -31,7 +31,7 @@ const categoryId = async (ctgoryId) => {
   const data = document.getElementById('sec');
   data.classList.remove('hidden');
   
-  // Remove the default content
+  
   const mainDIV = document.getElementById('maincontent');
   mainDIV.innerHTML = '';
 
@@ -49,9 +49,48 @@ const categoryId = async (ctgoryId) => {
     datactgIdarray.forEach(info => {
       const createdDiv = document.createElement('div');
 
-      const convert = (time) => {
-        // ... (Your existing code for time conversion)
-      };
+      const convert=(time)=>{
+  
+        const settime=time/60
+        
+      
+        const times=Math.floor(settime)
+        if (times<=60){
+        return `${times}`+' min ago'
+        }
+        else if(time==1672656000){
+          const hour =times/60
+          const days= hour/24
+    
+          const d=Math.floor(days)
+    
+          const mon=Math.floor((d/30))
+          
+          const year=mon/12
+          const m=Math.floor((mon%12))
+    
+        const y=Math.floor(year)
+        return `   ${y} y ${m} m ago`;
+    
+        }
+        else if(times>60 ){
+          const hour =times/60
+          const days= hour/24
+    
+          const d=Math.floor(days)
+      
+          const min=times%60
+          const hours=Math.floor(hour)
+          return`  ${hours} hrs ${min}` + 'min ago';
+        }
+        
+        else if (time==0){
+          return NaN
+        }
+        
+        // 
+        
+      }
 
       createdDiv.innerHTML = `
         <div class="card bg-base-100">
