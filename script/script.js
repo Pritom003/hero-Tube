@@ -25,7 +25,7 @@ const catagoryarray=(datas)=>{
   const catgBtn=document.getElementById('catagorybutton')
   
   const ul=document.createElement('ul')
-  ul.classList=`flex gap-4 px-8  md:px- lg:px-96  `
+  ul.classList=`flex gap-4  `
  let liHTML='';
  
   arrayOfData.forEach(element => {
@@ -137,13 +137,13 @@ datactgIdarray.forEach(info=>{
   }
   console.log(info.others?.posted_date)
   createdDiv.innerHTML=`
-  <div class="card bg-base-100 shadow-xl">
+  <div class="card bg-base-100">
   <div >
-          <figure><img class="relative w-full lg:w-96 lg:h-64" src="${info.thumbnail}" alt=thumbnail />
-          
-         </figure>
-         <span class=" absolute font-bold -mt-6  text-right    bg-slate-800   text-white w-36">
-      ${info.others?.posted_date? convert(info.others?.posted_date):''} </span>
+          <img class=" relative   w-full lg:w-96 lg:h-64" src="${info.thumbnail}" alt=thumbnail >
+          <span class="  absolute bottom-0 right-0  text-right flex  bg-slate-800   text-white w-30">
+          ${info.others?.posted_date? convert(info.others?.posted_date):''} </span> </img>
+            
+         </div>
          </div>
           <div class="card-body">
             <div class="flex gap-3">

@@ -121,7 +121,7 @@ else{
 
 
 HandleCatagory()
-
+categoryId()
 
 
 
